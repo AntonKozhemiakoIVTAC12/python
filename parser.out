@@ -1,0 +1,39 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> INT main LPAREN RPAREN LBRACE declarations statements RBRACE
+Rule 2     declarations -> INT ID SEMICOLON declarations
+Rule 3     declarations -> empty
+Rule 4     statements -> ID ASSIGN expression SEMICOLON statements
+Rule 5     statements -> FOR LPAREN INT ID ASSIGN NUMBER SEMICOLON ID LESS NUMBER SEMICOLON ID ASSIGN ID SEMICOLON RPAREN LBRACE statements RBRACE statements
+Rule 6     statements -> empty
+Rule 7     expression -> ID
+Rule 8     expression -> NUMBER
+Rule 9     empty -> <empty>
+
+Terminals, with rules where they appear
+
+ASSIGN               : 4 5 5
+FOR                  : 5
+ID                   : 2 4 5 5 5 5 7
+INT                  : 1 2 5
+LBRACE               : 1 5
+LESS                 : 5
+LPAREN               : 1 5
+NUMBER               : 5 5 8
+RBRACE               : 1 5
+RPAREN               : 1 5
+SEMICOLON            : 2 4 5 5 5
+error                : 
+
+Nonterminals, with rules where they appear
+
+declarations         : 1 2
+empty                : 3 6
+expression           : 4
+main                 : 1
+program              : 0
+statements           : 1 4 5 5
+

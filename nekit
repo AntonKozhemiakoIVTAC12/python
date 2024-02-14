@@ -1,0 +1,32 @@
+import numpy as np
+from math import sin
+from math import cos
+
+
+def f(x, y):
+    fx1 = 2 * (-1 * sin(x + y) * (cos(x + y) + 2 * y) + x + sin(y) - 0.6)
+    fx2 = 2 * cos(y) * (x + sin(y) - 0.6) - 2 * (sin(x + y) - 2) * (cos(x + y) + 2 * y)
+    return fx1, fx2
+
+
+x1, x2 = 3.5, 1
+a = 0.23
+eps = 0.000001
+dx = [1]
+
+print(f'k\t[x1, x2]\t\t\t\tdelta_x')
+print(f'0\t{x1:.6f}, {x2:.6f}')
+
+k = 1
+while dx[-1] > eps:
+    X = np.array([x1, x2])
+    F = np.array(f(x1, x2))
+
+    nx1, nx2 = X - a * F
+    dx.append(max(abs(nx1 - x1), abs(nx2 - x2)))
+    x1, x2 = nx1, nx2
+
+    print(f'{k}\t{x1:.6f}, {x2:.6f}\t\t{dx[-1]:.6f}')
+    k += 1
+
+print(f'\nx* = [{x1:.6f}, {x2:.6f}]')

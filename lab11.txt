@@ -1,0 +1,26 @@
+def lexer_analysis(code):
+    keyword_set = {'int', 'float', 'char', 'for', 'if', 'else'}  # Множество ключевых слов
+    operator_set = {'+', '-', '*', '/', '{', '}'}  # Множество операторов
+    variables = {}  # Словарь переменных и их типов
+    numbers = set()  # Множество чисел
+    operators = set()  # Множество операторов
+    keywords = set()  # Множество ключевых слов
+
+    tokens = re.findall(r'[A-Za-z_][A-Za-z0-9_]*|[-+*/]|[0-9]+', code)
+    current_type = None
+    for token in tokens:
+        if token in keyword_set:
+            print('keyword:', token)
+            current_type = token
+            keywords.add(token)
+        elif token in operator_set:
+            print('operator:', token)
+            operators.add(token)
+        elif token.isdigit():
+            print('number:', token)
+            numbers.add(token)
+        else:
+            print('variable:', token)
+            variables[token] = current_type
+
+    return (variables, numbers, operators, keywords)
